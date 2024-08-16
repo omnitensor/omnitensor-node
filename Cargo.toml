@@ -1,0 +1,78 @@
+[package]
+name = "omnitensor-node"
+version = "0.1.0"
+authors = ["OmniTensor Team <contact@omnitensor.io>"]
+edition = "2021"
+description = "OmniTensor Node - Decentralized AI Infrastructure"
+license = "Apache-2.0"
+
+[[bin]]
+name = "omnitensor-node"
+path = "src/main.rs"
+
+[dependencies]
+tokio = { version = "1.28", features = ["full"] }
+futures = "0.3"
+async-trait = "0.1"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+clap = { version = "4.3", features = ["derive"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+toml = "0.7"
+thiserror = "1.0"
+anyhow = "1.0"
+bytes = "1.4"
+hex = "0.4"
+rand = "0.8"
+sha2 = "0.10"
+ed25519-dalek = "1.0"
+libp2p = { version = "0.51", features = ["tcp-tokio", "mdns"] }
+rocksdb = { version = "0.20", default-features = false, features = ["lz4"] }
+rusqlite = { version = "0.29", features = ["bundled"] }
+reqwest = { version = "0.11", features = ["json"] }
+tonic = "0.9"
+prost = "0.11"
+
+# AI and compute-related dependencies
+tch = "0.10"  # PyTorch bindings for Rust
+ndarray = "0.15"
+rayon = "1.7"
+
+[dev-dependencies]
+tempfile = "3.5"
+mockall = "0.11"
+criterion = { version = "0.4", features = ["async_tokio"] }
+proptest = "1.2"
+test-log = { version = "0.2", default-features = false, features = ["trace"] }
+tracing-test = "0.2"
+
+[build-dependencies]
+tonic-build = "0.9"
+
+[profile.release]
+lto = true
+codegen-units = 1
+panic = "abort"
+opt-level = 3
+debug = false
+
+[profile.dev]
+opt-level = 0
+debug = true
+
+[features]
+default = ["gpu-support"]
+gpu-support = ["tch/cuda"]
+npu-support = []  # TODO: Add NPU support when available
+telemetry = ["opentelemetry"]
+experimental = []
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
+
+# TODO: Add any workspace-related configurations if this is part of a larger workspace
+
+[patch.crates-io]
+# TODO: Add any necessary patches to dependencies here
