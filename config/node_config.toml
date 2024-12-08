@@ -1,0 +1,70 @@
+
+[node]
+# Node-specific configuration for OmniTensor
+
+# The unique identifier for the node
+id = "node-001"
+
+# The address this node will bind to for P2P communication
+bind_address = "0.0.0.0:3030"
+
+# List of initial bootstrap nodes to connect to
+bootstrap_nodes = [
+    "node-002.example.com:3030",
+    "node-003.example.com:3030"
+]
+
+# Path to store blockchain data
+data_dir = "./data/blockchain"
+
+# Logging configuration
+[logging]
+# Log level can be one of "error", "warn", "info", "debug", or "trace"
+level = "info"
+
+# Path to store log files
+log_dir = "./logs"
+
+# Consensus settings
+[consensus]
+# Number of validators required for block finalization
+validator_count = 21
+
+# Time in seconds between blocks
+block_time_seconds = 6
+
+# The staking amount required to become a validator
+minimum_stake = 1000
+
+# Networking settings
+[network]
+# Max number of peers to connect to
+max_peers = 50
+
+# Enable NAT traversal
+enable_nat = true
+
+# AI Task Scheduling
+[ai_task_scheduler]
+# Maximum tasks this node can handle concurrently
+max_concurrent_tasks = 10
+
+# GPU usage threshold
+gpu_usage_threshold = 0.85
+
+# Path to AI models this node can serve
+model_dir = "./models"
+
+# Security settings
+[security]
+# Path to the TLS certificate for secure communication
+tls_cert_path = "./security/cert.pem"
+
+# Path to the TLS private key
+tls_key_path = "./security/key.pem"
+
+# Enable/Disable API authentication
+enable_auth = true
+
+# API access token
+api_token = "super_secret_api_token"

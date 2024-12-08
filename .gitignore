@@ -1,0 +1,13 @@
+
+# Ignore build artifacts
+target/
+*.log
+
+# Editor settings
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# OS generated files
+.DS_Store
